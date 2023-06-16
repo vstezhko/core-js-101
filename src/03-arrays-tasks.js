@@ -600,10 +600,18 @@ function getElementByIndexes(/* arr, indexes */) {
  *
  */
 function swapHeadAndTail(arr) {
-  const copy = [...arr];
-  arr.splice(0, 2, ...copy.slice(arr.length - 2, arr.length));
-  arr.splice(arr.length - 2, arr.length, ...copy.slice(0, 2));
-  return arr;
+  if (arr.length === 1) {
+    return arr;
+  }
+  const length = Math.floor(arr.length / 2);
+  const medium = arr.length % 2 && arr[length];
+  const start = [...arr.slice(0, length)];
+  const end = [...arr.slice(arr.length - length, arr.length)];
+
+  if (medium) {
+    return [...end, medium, ...start];
+  }
+  return [...end, ...start];
 }
 
 
