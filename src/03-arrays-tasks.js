@@ -35,8 +35,11 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const arr = [];
+  arr.length = len;
+  arr.fill(0, 0);
+  return arr.map((i, index) => index * 2 + 1);
 }
 
 
@@ -474,8 +477,18 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const arr = [];
+  arr.length = n;
+  arr.fill('');
+
+  return arr.map((i, index) => {
+    const intoArr = [];
+    intoArr.length = n;
+    intoArr.fill(0);
+    intoArr.fill(1, index, index + 1);
+    return intoArr;
+  });
 }
 
 /**
@@ -491,8 +504,11 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const arr = [];
+  arr.length = end - start + 1;
+  arr.fill(0);
+  return arr.map((item, index) => start + index);
 }
 
 /**
@@ -541,8 +557,16 @@ function distinct(arr) {
  *    "Poland" => ['Lodz']
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  const map = new Map();
+  array.map((item) => {
+    if (!map.get(item)) {
+      map.set(keySelector(item), array.filter((i) => keySelector(i) === keySelector(item))
+        .map((city) => valueSelector(city)));
+    }
+    return '';
+  });
+  return map;
 }
 
 
@@ -560,6 +584,16 @@ function group(/* array, keySelector, valueSelector */) {
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(/* arr, childrenSelector */) {
+  // const newArr = arr.flat();
+  // console.log(newArr);
+  // // console.log(newArr[0], childrenSelector(newArr[0]));
+  // [...newArr].map((i, index) => {
+  //   newArr.splice(index, 1, childrenSelector(i.toString()));
+  //   console.log(newArr);
+  //   return '';
+  // });
+  // console.log(newArr);
+  // return newArr;
   throw new Error('Not implemented');
 }
 
