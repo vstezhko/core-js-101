@@ -583,18 +583,8 @@ function group(array, keySelector, valueSelector) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  // const newArr = arr.flat();
-  // console.log(newArr);
-  // // console.log(newArr[0], childrenSelector(newArr[0]));
-  // [...newArr].map((i, index) => {
-  //   newArr.splice(index, 1, childrenSelector(i.toString()));
-  //   console.log(newArr);
-  //   return '';
-  // });
-  // console.log(newArr);
-  // return newArr;
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.reduce((result, element) => result.concat(childrenSelector(element)), []);
 }
 
 
@@ -610,8 +600,15 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  if (indexes.length === 1) {
+    return arr[indexes[0]];
+  }
+
+  const [currentIndex, ...remainingIndexes] = indexes;
+  const nestedArray = arr[currentIndex];
+
+  return getElementByIndexes(nestedArray, remainingIndexes);
 }
 
 
