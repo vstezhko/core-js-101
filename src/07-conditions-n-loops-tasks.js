@@ -27,8 +27,18 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  if (!(num % 5) && !(num % 3)) {
+    return 'FizzBuzz';
+  }
+  if (!(num % 5)) {
+    return 'Buzz';
+  }
+  if (!(num % 3)) {
+    return 'Fizz';
+  }
+
+  return num;
 }
 
 
@@ -43,8 +53,17 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  if (n === 1) {
+    return 1;
+  }
+  let counter = 1;
+  let res = 1;
+  while (counter < n) {
+    res *= (counter + 1);
+    counter += 1;
+  }
+  return res;
 }
 
 
@@ -60,8 +79,14 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let res = n1;
+  let counter = n1;
+  while (counter < n2) {
+    res += counter + 1;
+    counter += 1;
+  }
+  return res;
 }
 
 
@@ -72,7 +97,7 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  * @param {number} a
  * @param {number} b
  * @param {number} c
- * @return {bool}
+ * @return {boolean}
  *
  * @example:
  *   1,2,3    =>  false
@@ -80,8 +105,8 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return !(a >= (b + c) || b >= (a + c) || c >= (a + b));
 }
 
 
@@ -107,7 +132,7 @@ function isTriangle(/* a, b, c */) {
  *
  * @param {object} rect1
  * @param {object} rect2
- * @return {bool}
+ * @return {boolean}
  *
  * @example:
  *   { top: 0, left: 0, width: 10, height: 10 },
@@ -117,8 +142,18 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const rect1Right = rect1.left + rect1.width;
+  const rect1Bottom = rect1.top + rect1.height;
+  const rect2Right = rect2.left + rect2.width;
+  const rect2Bottom = rect2.top + rect2.height;
+
+  return (
+    rect1.left < rect2Right
+    && rect1Right > rect2.left
+    && rect1.top < rect2Bottom
+    && rect1Bottom > rect2.top
+  );
 }
 
 
