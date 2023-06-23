@@ -176,17 +176,17 @@ function doRectanglesOverlap(rect1, rect2) {
  *
  * @param {object} circle
  * @param {object} point
- * @return {bool}
+ * @return {boolean}
  *
  * @example:
  *   { center: { x:0, y:0 }, radius:10 },  { x:0, y:0 }     => true
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  return (
+    (circle.center.x - point.x) ** 2) + ((circle.center.y - point.y) ** 2) < (circle.radius ** 2);
 }
-
 
 /**
  * Returns the first non repeated char in the specified strings otherwise returns null.
@@ -301,8 +301,26 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const arr = ccn.toString()
+    .split('');
+  const checkNum = +arr.pop();
+  const dubledNum = arr.reverse()
+    .map((i, index) => {
+      if ((index + 2) % 2) {
+        return +i;
+      }
+      if ((+i * 2) > 9) {
+        return (+i * 2).toString()
+          .split('')
+          .reduce((acc, value) => acc + +value, 0);
+      }
+      return +i * 2;
+    });
+
+  const sumOfDigits = dubledNum.reduce((acc, value) => acc + value, 0);
+
+  return checkNum === 10 - (sumOfDigits % 10 || 10);
 }
 
 /**
@@ -354,6 +372,24 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true
  */
 function isBracketsBalanced(/* str */) {
+  // const stach = [];
+  // const arrStr = str.split('');
+  // const brackets = {
+  //   '[': ']',
+  //   '{': '}',
+  //   '(': ')',
+  //   '<': '>',
+  // };
+  //
+  // let counter = 0;
+  //
+  // while (counter < arrStr.length) {
+  //
+  //   if ()
+  //
+  //     }
+  //
+  // return true;
   throw new Error('Not implemented');
 }
 
