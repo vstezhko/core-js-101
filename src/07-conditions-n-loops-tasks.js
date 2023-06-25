@@ -371,26 +371,29 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  // const stach = [];
-  // const arrStr = str.split('');
-  // const brackets = {
-  //   '[': ']',
-  //   '{': '}',
-  //   '(': ')',
-  //   '<': '>',
-  // };
-  //
-  // let counter = 0;
-  //
-  // while (counter < arrStr.length) {
-  //
-  //   if ()
-  //
-  //     }
-  //
-  // return true;
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const stack = [];
+  const brackets = {
+    '[': ']',
+    '{': '}',
+    '(': ')',
+    '<': '>',
+  };
+
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+
+    if (Object.hasOwn(brackets, char)) {
+      stack.push(char);
+    } else if (Object.values(brackets)
+      .includes(char)) {
+      if (stack.length === 0 || brackets[stack.pop()] !== char) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
 }
 
 
@@ -414,8 +417,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
@@ -431,8 +434,26 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const directories = pathes[0].split('/');
+  let commonPath = '';
+
+  for (let i = 0; i < directories.length; i += 1) {
+    const currentDirectory = directories[i];
+
+    for (let j = 1; j < pathes.length; j += 1) {
+      const path = pathes[j];
+      const pathDirectories = path.split('/');
+
+      if (pathDirectories[i] !== currentDirectory) {
+        return commonPath;
+      }
+    }
+
+    commonPath += `${currentDirectory}/`;
+  }
+
+  return commonPath;
 }
 
 
