@@ -45,9 +45,7 @@ function getComposition(f, g) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (x) {
-    return x ** exponent;
-  };
+  return (x) => x ** exponent;
 }
 
 
@@ -68,10 +66,8 @@ function getPolynom(...args) {
   if (!args) {
     return null;
   }
-  return function (x = 1) {
-    return [...args].reverse()
-      .reduce((sum, curr, currentIndex) => sum + curr * (x ** currentIndex), 0);
-  };
+  return (x = 1) => [...args].reverse()
+    .reduce((sum, curr, currentIndex) => sum + curr * (x ** currentIndex), 0);
 }
 
 
@@ -115,7 +111,7 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-  return function () {
+  return () => {
     let result;
     for (let i = 0; i < attempts; i += 1) {
       try {
@@ -154,7 +150,7 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-  return function (...args) {
+  return (...args) => {
     const formattedArgs = args.map((arg) => JSON.stringify(arg))
       .join(',');
     logFunc(`${func.name}(${formattedArgs}) starts`);
